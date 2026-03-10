@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f4f3;
+  --foreground: #78a7e7;
 }
 
 @theme inline {
@@ -12,15 +12,56 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Inter, system-ui, -apple-system, sans-serif;
+}
+
+@keyframes downloadHover {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(16, 185, 129, 0.15);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(16, 185, 129, 0.25);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(16, 185, 129, 0.15);
+  }
+}
+
+.download-button:hover {
+  animation: downloadHover 1.2s ease-in-out infinite;
+}
+
+@keyframes ringSpin {
+  0% {
+    stroke-dashoffset: 0;
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
+  }
+  100% {
+    stroke-dashoffset: -260;
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
+  }
+}
+
+.download-button:hover .download-ring-glow {
+  animation: ringSpin 1.6s linear infinite;
 }
