@@ -65,3 +65,24 @@ body {
 .download-button:hover .download-ring-glow {
   animation: ringSpin 1.6s linear infinite;
 }
+
+.panel-six-glow {
+  box-shadow: 0 16px 32px rgba(16, 185, 129, 0.38);
+  transform: translateY(-1px);
+}
+
+@keyframes panelSixPop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.panel-six-glow {
+  animation: panelSixPop 0.45s ease-out;
+}
