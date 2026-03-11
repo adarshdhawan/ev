@@ -11,7 +11,7 @@ const stats = [
   { label: "Cities Covered", value: "2,500+", icon: Building2 },
 ];
 
-export default function Detail() {
+export default function TrustSection() {
   return (
     <section className="px-6 pb-16 pt-6 sm:px-10 lg:px-14">
       <div className="mx-auto w-full max-w-7xl">

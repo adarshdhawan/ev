@@ -27,7 +27,7 @@ const cards = [
   },
 ];
 
-export default function Panelthird() {
+export default function FeaturesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
 

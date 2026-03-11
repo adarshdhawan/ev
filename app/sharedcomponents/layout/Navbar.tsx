@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
-import Logo from "../Features/logo/logo/logo";
-import TopNavBar from "../Features/logo/nav/navbar";
-import SubNav from "../Features/logo/subnav/subnav";
+import Logo from "../../Features/logo/logo/logo";
+import TopNavBar from "../../Features/logo/nav/navbar";
+import SubNav from "../../Features/logo/subnav/subnav";
 
 type NavItem = {
   label: string;

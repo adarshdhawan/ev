@@ -32,7 +32,7 @@ const plans = [
   },
 ];
 
-export default function Panelfifth() {
+export default function PricingSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

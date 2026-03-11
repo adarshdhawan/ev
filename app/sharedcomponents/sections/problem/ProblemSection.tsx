@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 
-export default function Nextpanel() {
+export default function ProblemSection() {
   return (
     <section className="px-6 pb-16 pt-2 sm:px-10 lg:px-14">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1fr_1.1fr]">

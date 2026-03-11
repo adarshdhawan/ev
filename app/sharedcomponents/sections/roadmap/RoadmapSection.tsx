@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, BatteryCharging, CreditCard, ScanLine } from "lucide-react";
 
-export default function Panelsix() {
+export default function RoadmapSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const carRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);

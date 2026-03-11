@@ -1,119 +1,25 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "./Navbar";
-import HeroVisual from "./Animation";
-import Detail from "./Detail";
-import Status from "./Status";
-import Nextpanel from "./Nextpanel";
-import Panel from "./Panel";
-import HeroHeader from "../Features/logo/header/header";
-import HeroFooters from "../Features/logo/footers/footers";
-import { DownloadButton, PlanTripButton } from "../Features/logo/button/button";
-import Panelseocnd from "./Panelseocnd";
-import Panelthird from "./Panelthird";
-import Panelfourth from "./Panelfourth";
-import Panelfifth from "./Panelfifth";
-import Panelsix from "./Panelsix";
-
-function HeroCopy() {
-  const copyRef = useRef<HTMLDivElement>(null);
-  const wordRef = useRef<HTMLSpanElement>(null);
-  const downloadBtnRef = useRef<HTMLButtonElement>(null);
-  const downloadRingRef = useRef<SVGCircleElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".hero-copy-item",
-        { opacity: 0, y: 26 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.12,
-          duration: 0.9,
-          ease: "power3.out",
-          delay: 0.1,
-        },
-      );
-
-      if (wordRef.current) {
-        const words = ["efficiency", "performance", "confidence"];
-        let index = 0;
-        wordRef.current.textContent = words[index];
-        gsap.set(wordRef.current, { opacity: 1, y: 0 });
-
-        const wordTl = gsap.timeline({ repeat: -1, repeatDelay: 1.4 });
-        wordTl
-          .to(wordRef.current, {
-            opacity: 0,
-            y: -8,
-            duration: 0.3,
-            ease: "power2.in",
-            onComplete: () => {
-              index = (index + 1) % words.length;
-              if (wordRef.current) {
-                wordRef.current.textContent = words[index];
-              }
-            },
-          })
-          .to(wordRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-      }
-
-    }, copyRef);
-
-    const button = downloadBtnRef.current;
-    const ring = downloadRingRef.current;
-    let ringTl: gsap.core.Timeline | null = null;
-    let onEnter: (() => void) | null = null;
-    let onLeave: (() => void) | null = null;
-
-    if (button && ring) {
-      ringTl = gsap.timeline({ paused: true, repeat: -1 });
-      ringTl
-        .set(ring, { strokeDashoffset: 220 })
-        .to(ring, { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" })
-        .to(ring, { strokeDashoffset: -220, duration: 1.2, ease: "power2.inOut" });
-
-      onEnter = () => ringTl?.play();
-      onLeave = () => {
-        ringTl?.pause(0);
-        gsap.set(ring, { strokeDashoffset: 220 });
-      };
-
-      button.addEventListener("mouseenter", onEnter);
-      button.addEventListener("mouseleave", onLeave);
-    }
-
-    return () => {
-      if (button && onEnter && onLeave) {
-        button.removeEventListener("mouseenter", onEnter);
-        button.removeEventListener("mouseleave", onLeave);
-      }
-      ctx.revert();
-    };
-  }, []);
-
-  return (
-    <div ref={copyRef} className="max-w-2xl space-y-6 pl-14">
-      <HeroHeader ref={wordRef} />
-
-      <div className="hero-copy-item flex flex-wrap items-center gap-3">
-        <PlanTripButton />
-        <DownloadButton ref={downloadBtnRef} ringRef={downloadRingRef} />
-      </div>
-
-      <HeroFooters />
-    </div>
-  );
-}
+import gsap from "gsap";
+import AppFeaturesPanel from "./panels/AppFeaturesPanel";
+import ChargingNetworksPanel from "./panels/ChargingNetworksPanel";
+import ToolsPanel from "./panels/ToolsPanel";
+import GuidesPanel from "./panels/GuidesPanel";
+import FaqPanel from "./panels/FaqPanel";
+import CtaPanel from "./panels/CtaPanel";
+import FooterPanel from "./panels/FooterPanel";
+import CallToActionSection from "./sections/cta/CallToActionSection";
+import FeaturesSection from "./sections/features/FeaturesSection";
+import HeroSection from "./sections/hero/HeroSection";
+import HeroVisual from "./sections/hero/HeroVisual";
+import PlanSection from "./sections/planning/PlanSection";
+import PricingSection from "./sections/pricing/PricingSection";
+import ProblemSection from "./sections/problem/ProblemSection";
+import RoadmapSection from "./sections/roadmap/RoadmapSection";
+import Navbar from "./layout/Navbar";
+import TrustSection from "./sections/trust/TrustSection";
 
 export default function Homepage() {
   const scrollCarRef = useRef<HTMLDivElement>(null);
@@ -158,7 +64,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <main className="min-h-[100svh] w-full overflow-x-hidden bg-white pb-10">
+    <main className="min-h-[100svh] w-full overflow-x-hidden bg-white">
       <div
         ref={scrollContainerRef}
         className="pointer-events-none fixed right-36 top-0 z-20 hidden h-full w-20 items-start justify-center md:flex"
@@ -207,31 +113,24 @@ export default function Homepage() {
           </svg>
         </div>
       </div>
-      <Navbar />
-      <section className="relative min-h-[100svh] px-10 pb-10 pt-0 sm:px-12 lg:px-16">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-24 top-6 h-64 w-64 rounded-full bg-emerald-200/18 blur-3xl" />
-          <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-sky-200/18 blur-[110px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.06),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(14,165,233,0.06),transparent_40%)]" />
-        </div>
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <HeroCopy />
-          <HeroVisual />
-        </div>
-      </section>
-      <Detail />
-      <section className="px-6 pb-16 sm:px-10 lg:px-14">
-        <div className="mx-auto w-full max-w-7xl">
-         
-        </div>
-      </section>
-    
-      <Nextpanel />
-      <Panelseocnd/>
-      <Panelthird/>
-      <Panelfourth/>
-      <Panelfifth/>
-      <Panelsix/>
+      <Navbar/>
+      <HeroSection/>
+      {/* <HeroVisual/> */}
+      <TrustSection/>
+      <ProblemSection/>
+      <PlanSection/>
+      <FeaturesSection/>
+      <CallToActionSection/> {/*increase the panel size and font size  */}
+      <PricingSection/>
+      <RoadmapSection/>
+      <AppFeaturesPanel />
+      <ToolsPanel />
+      <ChargingNetworksPanel /> 
+      <GuidesPanel />
+      <FaqPanel />
+      <CtaPanel />  {/*make changes and increase box size button size*/}
+      <FooterPanel />
     </main>
   );
 }
+  

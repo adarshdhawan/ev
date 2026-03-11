@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { CarFront, Navigation, Zap } from "lucide-react";
+import Image from "next/image";
+import { CarFront, Zap } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { phoneImageSrc } from "../../../Features/logo/img/img";
 
 export default function HeroVisual() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -48,15 +50,7 @@ export default function HeroVisual() {
 
     }, sectionRef);
 
-    const onScroll = () => {
-      const scrollY = window.scrollY || 0;
-      const drift = Math.min(scrollY * 0.08, 28);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     return () => {
-      window.removeEventListener("scroll", onScroll);
       ctx.revert();
     };
   }, []);
@@ -67,6 +61,18 @@ export default function HeroVisual() {
       className="relative mx-auto h-[420px] w-full max-w-[540px] px-2 sm:h-[500px] sm:px-4 lg:h-[600px]"
       style={{ perspective: "1200px" }}
     >
+      <div className="pointer-events-auto absolute left-1/2 top-1/2 z-20 h-[320px] w-[210px] -translate-x-1/2 -translate-y-[76%] -rotate-12 transform-gpu sm:h-[380px] sm:w-[240px] sm:-translate-y-[78%] lg:h-[480px] lg:w-[300px]">
+        <div className="group relative h-full w-full overflow-hidden rounded-[26px] shadow-[0_30px_60px_rgba(15,23,42,0.28)]">
+          <Image
+            src={phoneImageSrc}
+            alt="EVJoints trip planner on phone"
+            width={900}
+            height={1200}
+            className="h-full w-full object-contain transition-transform duration-500 ease-out translate-y-8 group-hover:translate-y-0 group-hover:scale-[1.02]"
+            priority
+          />
+        </div>
+      </div>
       <div
         ref={ringOneRef}
         className="absolute left-1/2 top-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/35"

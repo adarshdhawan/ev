@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { PlanTripButton } from "../Features/logo/button/button";
+import { PlanTripButton } from "../../../Features/logo/button/button";
 
-export default function Panelseocnd() {
+export default function PlanSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
