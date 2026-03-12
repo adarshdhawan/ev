@@ -1,6 +1,8 @@
-import { forwardRef } from "react";
-import type { Ref } from "react";
+"use client";
+
+import { forwardRef, useEffect, useRef } from "react";
 import { ArrowRight, Download } from "lucide-react";
+import gsap from "gsap";
 
 export function PlanTripButton() {
   return (
@@ -14,51 +16,57 @@ export function PlanTripButton() {
   );
 }
 
-type DownloadButtonProps = {
-  ringRef: Ref<SVGCircleElement>;
-};
-
-export const DownloadButton = forwardRef<HTMLButtonElement, DownloadButtonProps>(function DownloadButton(
-  { ringRef },
-  ref,
+export const DownloadButton = forwardRef<HTMLButtonElement>(function DownloadButton(
+  _,
+  ref
 ) {
+  const borderRef = useRef<SVGRectElement>(null);
+
+  useEffect(() => {
+    if (!borderRef.current) return;
+
+    gsap.to(borderRef.current, {
+      strokeDashoffset: -400,
+      duration: 3,
+      repeat: -1,
+      ease: "linear",
+    });
+  }, []);
+
   return (
-    <button
-      ref={ref}
-      type="button"
-      className="download-button group relative inline-flex items-center gap-3 rounded-full border border-slate-200 bg-[#f1f1f1] px-7 py-3 text-base font-semibold text-emerald-700 transition hover:border-emerald-500 hover:bg-emerald-600 hover:text-white"
-    >
-      <span className="relative flex h-7 w-7 items-center justify-center">
-        <svg className="absolute inset-0 h-7 w-7 -rotate-90" viewBox="0 0 80 80">
-          <circle
-            cx="40"
-            cy="40"
-            r="32"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeDasharray="60 200"
-            strokeDashoffset="0"
-            className="download-ring-glow text-emerald-200/70"
-          />
-          <circle
-            ref={ringRef}
-            cx="40"
-            cy="40"
-            r="32"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeDasharray="220"
-            strokeDashoffset="220"
-            className="text-emerald-200/80 group-hover:text-white"
-          />
-        </svg>
+    <div className="relative inline-block">
+      {/* Animated Border */}
+      <svg
+        className="absolute inset-0 h-full w-full pointer-events-none"
+        viewBox="0 0 300 70"
+        preserveAspectRatio="none"
+      >
+        <rect
+          ref={borderRef}
+          x="2"
+          y="2"
+          width="296"
+          height="66"
+          rx="35"
+          ry="35"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeDasharray="80 320"
+          strokeDashoffset="0"
+          className="text-emerald-400"
+        />
+      </svg>
+
+      {/* Button */}
+      <button
+        ref={ref}
+        type="button"
+        className="relative inline-flex items-center gap-3 rounded-full border border-slate-200 bg-[#f1f1f1] px-7 py-3 text-base font-semibold text-emerald-700 transition hover:border-emerald-500 hover:bg-emerald-600 hover:text-white"
+      >
         <Download className="h-5 w-5" />
-      </span>
-      Download the app
-    </button>
+        Download the app
+      </button>
+    </div>
   );
 });

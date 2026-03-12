@@ -13,31 +13,48 @@ const stats = [
 
 export default function TrustSection() {
   return (
-    <section className="px-6 pb-16 pt-6 sm:px-10 lg:px-14">
+    <section className="px-6 py-20 sm:px-10 lg:px-14">
       <div className="mx-auto w-full max-w-7xl">
-        <h2 className="text-center text-3xl font-semibold text-emerald-600 sm:text-4xl">
+        
+        {/* Title */}
+        <h2 className="text-center text-3xl font-semibold tracking-wide text-emerald-600 sm:text-4xl lg:tracking-wider">
           Trusted by EV travellers across India
         </h2>
-        <div className="mt-6 overflow-hidden rounded-[28px] bg-gradient-to-r from-[#10a85a] via-[#0b7b43] to-[#0a5a33] shadow-[0_18px_40px_rgba(16,129,80,0.25)]">
-          <div className="grid grid-cols-2 gap-y-6 px-8 py-8 text-white sm:grid-cols-3 lg:grid-cols-6">
+
+        {/* Stats Box */}
+        <div className="mt-10 overflow-hidden rounded-[28px] bg-gradient-to-r from-[#10a85a] via-[#0b7b43] to-[#0a5a33] shadow-[0_18px_40px_rgba(16,129,80,0.25)]">
+          
+          <div className="grid grid-cols-2 gap-y-10 gap-x-6 px-10 py-10 text-white sm:grid-cols-3 lg:grid-cols-6">
+            
             {stats.map((stat, index) => {
               const Icon = stat.icon;
+
               return (
                 <div
                   key={stat.value}
-                  className={`flex flex-col items-center gap-2 px-4 text-center ${
+                  className={`flex flex-col items-center gap-3 px-4 text-center ${
                     index === 0 ? "" : "lg:border-l lg:border-white/20"
                   }`}
                 >
-                  <div className="rounded-full border border-white/25 bg-white/10 p-2">
+                  
+                  <div className="rounded-full border border-white/25 bg-white/10 p-3">
                     <Icon className="h-5 w-5 text-white/90" />
                   </div>
-                  <p className="text-xl font-semibold">{stat.value}</p>
-                  <p className="whitespace-pre-line text-xs text-white/80">{stat.label}</p>
+
+                  <p className="text-2xl font-semibold tracking-wide">
+                    {stat.value}
+                  </p>
+
+                  <p className="whitespace-pre-line text-sm text-white/80 leading-relaxed">
+                    {stat.label}
+                  </p>
+
                 </div>
               );
             })}
+          
           </div>
+
         </div>
       </div>
     </section>

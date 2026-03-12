@@ -3,13 +3,13 @@ import logoImage from "../../../assets/889ac7f3a67dc7f9f2288685ceb84be83e9e4703.
 
 export default function Logo() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-start w-full">
       <Image
         src={logoImage}
         alt="EVJoints"
-        width={160}
-        height={48}
-        className="h-[40px] w-auto object-contain"
+        width={100}
+        height={65}
+        className="h-[50px] w-auto object-contain"
         priority
       />
     </div>
