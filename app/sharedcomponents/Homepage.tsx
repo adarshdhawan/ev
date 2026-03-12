@@ -20,6 +20,7 @@ import ProblemSection from "./sections/problem/ProblemSection";
 import RoadmapSection from "./sections/roadmap/RoadmapSection";
 import Navbar from "./layout/Navbar";
 import TrustSection from "./sections/trust/TrustSection";
+import ChargingLogos from "./panels/ChargingLogo";
 
 export default function Homepage() {
   const scrollCarRef = useRef<HTMLDivElement>(null);
@@ -122,13 +123,14 @@ export default function Homepage() {
       <FeaturesSection/>
       <CallToActionSection/> {/*increase the panel size and font size  */}
       <PricingSection/>
-      <RoadmapSection/>
+      <RoadmapSection/> 
       <AppFeaturesPanel />
-      <ToolsPanel />
+      <ToolsPanel /> 
       <ChargingNetworksPanel /> 
       <GuidesPanel />
       <FaqPanel />
       <CtaPanel />  {/*make changes and increase box size button size*/}
+      {/* <ChargingLogos/> */}
       <FooterPanel />
     </main>
   );
