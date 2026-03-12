@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logoImage from "../../../assets/889ac7f3a67dc7f9f2288685ceb84be83e9e4703.png";
+import logoImage from "../../../assets/Green logo with black tagline and R png transparent.png";
 
 export default function Logo() {
   return (

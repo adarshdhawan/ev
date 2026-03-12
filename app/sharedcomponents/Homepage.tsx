@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+
 import AppFeaturesPanel from "./panels/AppFeaturesPanel";
 import ChargingNetworksPanel from "./panels/ChargingNetworksPanel";
 import ToolsPanel from "./panels/ToolsPanel";
@@ -10,6 +11,7 @@ import GuidesPanel from "./panels/GuidesPanel";
 import FaqPanel from "./panels/FaqPanel";
 import CtaPanel from "./panels/CtaPanel";
 import FooterPanel from "./panels/FooterPanel";
+
 import CallToActionSection from "./sections/cta/CallToActionSection";
 import FeaturesSection from "./sections/features/FeaturesSection";
 import HeroSection from "./sections/hero/HeroSection";
@@ -18,8 +20,9 @@ import PlanSection from "./sections/planning/PlanSection";
 import PricingSection from "./sections/pricing/PricingSection";
 import ProblemSection from "./sections/problem/ProblemSection";
 import RoadmapSection from "./sections/roadmap/RoadmapSection";
-import Navbar from "./layout/Navbar";
 import TrustSection from "./sections/trust/TrustSection";
+
+import Navbar from "./layout/Navbar";
 import ChargingLogos from "./panels/ChargingLogo";
 
 export default function Homepage() {
@@ -30,6 +33,7 @@ export default function Homepage() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
     const car = scrollCarRef.current;
     const path = scrollPathRef.current;
     const svg = scrollSvgRef.current;
@@ -39,13 +43,16 @@ export default function Homepage() {
     const updatePosition = (progress: number) => {
       const length = path.getTotalLength();
       const point = path.getPointAtLength(length * progress);
+
       const svgRect = svg.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
       const scaleX = svgRect.width / 40;
       const scaleY = svgRect.height / 800;
       const carRect = car.getBoundingClientRect();
+
       const x = svgRect.left - containerRect.left + point.x * scaleX - carRect.width / 2;
       const y = svgRect.top - containerRect.top + point.y * scaleY - carRect.height / 2;
+
       gsap.set(car, { x, y });
     };
 
@@ -66,6 +73,7 @@ export default function Homepage() {
 
   return (
     <main className="min-h-[100svh] w-full overflow-x-hidden bg-white">
+      {/* Scroll Car and Path */}
       <div
         ref={scrollContainerRef}
         className="pointer-events-none fixed right-36 top-0 z-20 hidden h-full w-20 items-start justify-center md:flex"
@@ -84,6 +92,7 @@ export default function Homepage() {
             strokeWidth="1.5"
           />
         </svg>
+
         <div
           ref={scrollCarRef}
           className="absolute left-0 top-0 flex h-10 w-12 items-center justify-center drop-shadow-[0_0_10px_rgba(16,185,129,0.45)]"
@@ -100,39 +109,42 @@ export default function Homepage() {
                 <stop offset="100%" stopColor="#dff5ec" />
               </radialGradient>
             </defs>
+
             <path
               d="M10 26c2-8 10-12 22-12h8c12 0 20 4 22 12l2 6H8l2-6z"
               fill="url(#scrollCarBody)"
             />
+
             <rect x="22" y="18" width="20" height="10" rx="4" fill="url(#scrollCarGlass)" />
             <rect x="16" y="20" width="8" height="6" rx="3" fill="#e6f7ef" />
             <rect x="42" y="20" width="8" height="6" rx="3" fill="#e6f7ef" />
+
             <circle cx="14" cy="30" r="3.5" fill="#0b3f2a" />
             <circle cx="50" cy="30" r="3.5" fill="#0b3f2a" />
+
             <circle cx="14" cy="30" r="1.5" fill="#e6f7ef" />
             <circle cx="50" cy="30" r="1.5" fill="#e6f7ef" />
           </svg>
         </div>
       </div>
-      <Navbar/>
-      <HeroSection/>
-      {/* <HeroVisual/> */}
-      <TrustSection/>
-      <ProblemSection/>
-      <PlanSection/>
-      <FeaturesSection/>
-      <CallToActionSection/> {/*increase the panel size and font size  */}
-      <PricingSection/>
-      <RoadmapSection/> 
+
+      {/* Sections */}
+      <Navbar />
+      <HeroSection />
+      <TrustSection />
+      <ProblemSection />
+      <PlanSection />
+      <FeaturesSection />
+      <CallToActionSection />
+      <PricingSection />
+      <RoadmapSection />
       <AppFeaturesPanel />
-      <ToolsPanel /> 
-      <ChargingNetworksPanel /> 
+      <ToolsPanel />
+      <ChargingNetworksPanel />
       <GuidesPanel />
       <FaqPanel />
-      <CtaPanel />  {/*make changes and increase box size button size*/}
-      {/* <ChargingLogos/> */}
+      <CtaPanel />
       <FooterPanel />
     </main>
   );
 }
-  

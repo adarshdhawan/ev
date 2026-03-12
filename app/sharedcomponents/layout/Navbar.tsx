@@ -68,10 +68,10 @@ export default function Navbar() {
     <header className="relative z-40">
       <TopNavBar items={topNavItems} />
 
-      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-8 px-8 py-3 md:px-10 lg:px-12">
+      <div className="flex w-full items-center justify-between gap-8 px-0 py-3">
 
-        {/* Logo */}
-        <div className="flex shrink-0 items-center pr-6">
+        {/* Logo with left and right margin */}
+        <div className="flex shrink-0 items-center ml-2.5 mr-10">
           <Logo />
         </div>
 
