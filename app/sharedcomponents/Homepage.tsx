@@ -15,7 +15,6 @@ import FooterPanel from "./panels/FooterPanel";
 import CallToActionSection from "./sections/cta/CallToActionSection";
 import FeaturesSection from "./sections/features/FeaturesSection";
 import HeroSection from "./sections/hero/HeroSection";
-import HeroVisual from "./sections/hero/HeroVisual";
 import PlanSection from "./sections/planning/PlanSection";
 import PricingSection from "./sections/pricing/PricingSection";
 import ProblemSection from "./sections/problem/ProblemSection";
@@ -23,6 +22,7 @@ import RoadmapSection from "./sections/roadmap/RoadmapSection";
 import TrustSection from "./sections/trust/TrustSection";
 
 import Navbar from "./layout/Navbar";
+import HeroVisual from "./sections/hero/HeroVisual";
 import ChargingLogos from "./panels/ChargingLogo";
 
 export default function Homepage() {

@@ -7,9 +7,9 @@ export default function Logo() {
       <Image
         src={logoImage}
         alt="EVJoints"
-        width={100}
-        height={65}
-        className="h-[50px] w-auto object-contain"
+        width={3000}
+        height={56}
+        className="h-[53px] w-auto object-contain"
         priority
       />
     </div>

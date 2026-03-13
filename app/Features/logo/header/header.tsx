@@ -5,7 +5,7 @@ const HeroHeader = forwardRef<HTMLSpanElement>(function HeroHeader(_, ref) {
     <div className="-mt-20 flex flex-col items-center text-center lg:items-start lg:text-left gap-4">
 
       <h1 className="font-[Inter,system-ui,-apple-system,sans-serif] hero-copy-item text-3xl font-semibold leading-[1.1] sm:text-4xl lg:text-5xl">
-        
+
         {/* Line 1 */}
         <span className="block text-emerald-600">
           Plan your EV trip.

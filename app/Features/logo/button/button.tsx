@@ -1,72 +1,54 @@
 "use client";
 
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef } from "react";
 import { ArrowRight, Download } from "lucide-react";
-import gsap from "gsap";
 
 export function PlanTripButton() {
   return (
     <button
       type="button"
-      className="inline-flex items-center gap-3 rounded-full bg-emerald-600 px-7 py-3 text-base font-semibold text-white transition hover:bg-emerald-700"
+      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#10b981] px-8 py-4 text-lg font-bold text-white transition-all hover:bg-[#059669] hover:shadow-lg active:scale-95"
     >
       Plan your trip
-      <ArrowRight className="h-5 w-5" />
+      <ArrowRight className="h-6 w-6" />
     </button>
   );
 }
 
-export const DownloadButton = forwardRef<HTMLButtonElement>(function DownloadButton(
-  _,
-  ref
-) {
-  const borderRef = useRef<SVGRectElement>(null);
+interface DownloadButtonProps {
+  ringRef?: React.RefObject<SVGCircleElement | null>;
+}
 
-  useEffect(() => {
-    if (!borderRef.current) return;
-
-    gsap.to(borderRef.current, {
-      strokeDashoffset: -400,
-      duration: 3,
-      repeat: -1,
-      ease: "linear",
-    });
-  }, []);
-
-  return (
-    <div className="relative inline-block">
-      {/* Animated Border */}
-      <svg
-        className="absolute inset-0 h-full w-full pointer-events-none"
-        viewBox="0 0 300 70"
-        preserveAspectRatio="none"
-      >
-        <rect
-          ref={borderRef}
-          x="2"
-          y="2"
-          width="296"
-          height="66"
-          rx="35"
-          ry="35"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeDasharray="80 320"
-          strokeDashoffset="0"
-          className="text-emerald-400"
-        />
-      </svg>
-
-      {/* Button */}
+export const DownloadButton = forwardRef<HTMLButtonElement, DownloadButtonProps>(
+  function DownloadButton({ ringRef }, ref) {
+    return (
       <button
         ref={ref}
         type="button"
-        className="relative inline-flex items-center gap-3 rounded-full border border-slate-200 bg-[#f1f1f1] px-7 py-3 text-base font-semibold text-emerald-700 transition hover:border-emerald-500 hover:bg-emerald-600 hover:text-white"
+        className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-[#f8fafc] px-8 py-4 text-lg font-bold text-[#10b981] border border-transparent transition-all hover:bg-white hover:border-[#10b981]/20 hover:shadow-md active:scale-95"
       >
-        <Download className="h-5 w-5" />
+        <div className="relative flex items-center justify-center">
+             <Download className="h-6 w-6" />
+             {/* Subtle ring effect if needed later */}
+             {ringRef && (
+                <svg className="absolute -inset-1 h-8 w-8 -rotate-90 pointer-events-none">
+                    <circle
+                        ref={ringRef}
+                        cx="16"
+                        cy="16"
+                        r="14"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeDasharray="88"
+                        strokeDashoffset="88"
+                        className="opacity-20"
+                    />
+                </svg>
+             )}
+        </div>
         Download the app
       </button>
-    </div>
-  );
-});
+    );
+  }
+);

@@ -78,18 +78,16 @@ export default function SubNav({
 
   return (
     <nav
-      className={`${
-        scrolled
+      className={`${scrolled
           ? "fixed top-6 left-1/2 -translate-x-1/2 z-50 opacity-100 translate-y-0"
           : "relative ml-10 opacity-100 translate-y-0"
-      }
+        }
       flex flex-nowrap items-center min-h-[64px] gap-2 rounded-full border border-slate-200 px-7 py-3
       transition-all duration-500 ease-out
-      ${
-        scrolled
+      ${scrolled
           ? "bg-white/90 backdrop-blur-md shadow-[0_18px_40px_rgba(15,23,42,0.1)]"
           : "bg-white"
-      }
+        }
       ${className ?? ""}`}
     >
       {items.slice(0, 4).map((item) => (

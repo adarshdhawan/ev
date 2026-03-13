@@ -2,19 +2,28 @@
 
 import { useEffect, useRef } from "react";
 import { CarFront, MapPin, Zap } from "lucide-react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Import phone images
+import phoneImg1 from "@/app/assets/0a4f7115570656534fa11fd9c9bb3d98c9748560.png";
+import phoneImg2 from "@/app/assets/9de05fd2c4922afa310ed8802f122d91e0ff6cdb.png";
 
 export default function HeroVisual() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const ringOneRef = useRef<HTMLDivElement>(null);
   const ringTwoRef = useRef<HTMLDivElement>(null);
   const ringThreeRef = useRef<HTMLDivElement>(null);
+  const phoneOneRef = useRef<HTMLDivElement>(null);
+  const phoneTwoRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // Entry animation for rings
       gsap.fromTo(
         [ringOneRef.current, ringTwoRef.current, ringThreeRef.current],
         { opacity: 0, scale: 0.75 },
@@ -28,6 +37,7 @@ export default function HeroVisual() {
         }
       );
 
+      // Rotating rings
       gsap.to(ringOneRef.current, {
         rotate: 360,
         duration: 18,
@@ -48,51 +58,135 @@ export default function HeroVisual() {
         ease: "none",
         repeat: -1,
       });
+
+      // Entry animation for phones
+      gsap.fromTo(
+        [phoneOneRef.current, phoneTwoRef.current],
+        { opacity: 0, y: 50, rotateY: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          rotateY: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.2,
+          delay: 0.5,
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handleMouseEnter = () => {
+    // Bring phone one to front smoothly
+    gsap.to(phoneOneRef.current, {
+      zIndex: 30,
+      scale: 1.02,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+    gsap.to(phoneTwoRef.current, {
+      opacity: 0.8,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    // Reset phone one to back
+    gsap.to(phoneOneRef.current, {
+      zIndex: 10,
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+    gsap.to(phoneTwoRef.current, {
+      opacity: 1,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+  };
+
   return (
     <div
       ref={sectionRef}
-      className="relative mx-auto w-full max-w-[620px] h-[360px] sm:h-[420px] md:h-[480px] lg:h-[560px]"
-      style={{ perspective: "1200px" }}
+      className="relative mx-auto w-full max-w-[620px] h-[400px] sm:h-[460px] md:h-[520px] lg:h-[600px]"
+      style={{ perspective: "1500px" }}
     >
-      {/* Outer Ring */}
-      <div
-        ref={ringOneRef}
-        className="absolute left-1/2 top-[34%] sm:top-[36%] md:top-[38%]
-        h-[300px] w-[300px] sm:h-[360px] sm:w-[360px] md:h-[420px] md:w-[420px] lg:h-[460px] lg:w-[460px]
-        -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/35"
-      >
-        <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
-          <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
-        </span>
+      {/* Background Rings */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Outer Ring */}
+        <div
+          ref={ringOneRef}
+          className="absolute left-1/2 top-[38%] h-[280px] w-[280px] sm:h-[340px] sm:w-[340px] md:h-[420px] md:w-[420px] lg:h-[480px] lg:w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/70"
+        >
+          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
+            <Zap className="h-3 w-3 sm:h-4 sm:w-4" />
+          </span>
+        </div>
+
+        {/* Middle Ring */}
+        <div
+          ref={ringTwoRef}
+          className="absolute left-1/2 top-[38%] h-[220px] w-[220px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[400px] lg:w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-emerald-500/70"
+        >
+          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
+            <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+          </span>
+        </div>
+
+        {/* Inner Ring */}
+        <div
+          ref={ringThreeRef}
+          className="absolute left-1/2 top-[38%] h-[160px] w-[160px] sm:h-[220px] sm:w-[220px] md:h-[260px] md:w-[260px] lg:h-[320px] lg:w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dotted border-emerald-500/70"
+        >
+          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
+            <CarFront className="h-3 w-3 sm:h-4 sm:w-4" />
+          </span>
+        </div>
       </div>
 
-      {/* Middle Ring */}
+      {/* Diagonal Phones */}
       <div
-        ref={ringTwoRef}
-        className="absolute left-1/2 top-[34%] sm:top-[36%] md:top-[38%]
-        h-[220px] w-[220px] sm:h-[280px] sm:w-[280px] md:h-[330px] md:w-[330px] lg:h-[360px] lg:w-[360px]
-        -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-emerald-500/35"
+        ref={containerRef}
+        className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] h-full flex items-center justify-center pointer-events-auto"
       >
-        <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
-          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
-        </span>
-      </div>
+        {/* Phone 1 (Behind/Left) */}
+        <div
+          ref={phoneOneRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="absolute z-10 w-[160px] sm:w-[190px] md:w-[220px] cursor-pointer"
+          style={{
+            transform: 'translateX(-25%) translateY(-10%) rotate(-10deg)',
+            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))'
+          }}
+        >
+          <Image
+            src={phoneImg1}
+            alt="Trip Summary"
+            className="w-full h-auto rounded-[2.2rem]"
+            priority
+          />
+        </div>
 
-      {/* Inner Ring */}
-      <div
-        ref={ringThreeRef}
-        className="absolute left-1/2 top-[34%] sm:top-[36%] md:top-[38%]
-        h-[150px] w-[150px] sm:h-[190px] sm:w-[190px] md:h-[230px] md:w-[230px] lg:h-[260px] lg:w-[260px]
-        -translate-x-1/2 -translate-y-1/2 rounded-full border border-dotted border-emerald-500/35"
-      >
-        <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300 bg-white p-1 text-emerald-600 shadow">
-          <CarFront className="h-3 w-3 sm:h-4 sm:w-4" />
-        </span>
+        {/* Phone 2 (Front/Right) */}
+        <div
+          ref={phoneTwoRef}
+          className="absolute z-20 w-[160px] sm:w-[190px] md:w-[220px] pointer-events-none"
+          style={{
+            transform: 'translateX(25%) translateY(10%) rotate(10deg)',
+            filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.2))'
+          }}
+        >
+          <Image
+            src={phoneImg2}
+            alt="Navigation Map"
+            className="w-full h-auto rounded-[2.2rem]"
+            priority
+          />
+        </div>
       </div>
     </div>
   );

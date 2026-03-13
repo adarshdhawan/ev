@@ -68,15 +68,15 @@ export default function Navbar() {
     <header className="relative z-40">
       <TopNavBar items={topNavItems} />
 
-      <div className="flex w-full items-center justify-between gap-8 px-0 py-3">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-4">
 
-        {/* Logo with left and right margin */}
-        <div className="flex shrink-0 items-center ml-2.5 mr-10">
+        {/* Logo */}
+        <div className="flex shrink-0 items-center">
           <Logo />
         </div>
 
         {/* Center Navigation */}
-        <div className="hidden flex-1 items-center justify-center md:flex px-8">
+        <div className="hidden flex-1 items-center justify-center md:flex">
           <SubNav
             items={subNavItems}
             menuGroups={menuGroups}
@@ -85,10 +85,10 @@ export default function Navbar() {
         </div>
 
         {/* Right Button */}
-        <div className="hidden shrink-0 items-center pl-6 md:flex">
+        <div className="hidden shrink-0 items-center md:flex">
           <button
             type="button"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-3 text-[17px] font-medium tracking-normal text-white transition-all duration-300 ease-out hover:bg-emerald-600 hover:-translate-y-[3px] hover:scale-[1.05]"
+            className="inline-flex items-center gap rounded-full bg-[#10b981] px-4 py-2.5 text-[15px] font-bold text-white transition-all hover:bg-[#059669] hover:shadow-md active:scale-95"
           >
             Plan your trip
             <ArrowRight className="h-4 w-4" />
