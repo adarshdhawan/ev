@@ -71,11 +71,12 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-4">
 
         {/* Logo */}
-        <div className="flex shrink-0 items-center">
+        <div className="flex shrink-0 items-center mr-16">
           <Logo />
         </div>
 
         {/* Center Navigation */}
+        
         <div className="hidden flex-1 items-center justify-center md:flex">
           <SubNav
             items={subNavItems}
@@ -86,14 +87,34 @@ export default function Navbar() {
 
         {/* Right Button */}
         <div className="hidden shrink-0 items-center md:flex">
-          <button
-            type="button"
-            className="inline-flex items-center gap rounded-full bg-[#10b981] px-4 py-2.5 text-[15px] font-bold text-white transition-all hover:bg-[#059669] hover:shadow-md active:scale-95"
-          >
-            Plan your trip
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
+  <button
+    type="button"
+    className="
+      group
+      inline-flex items-center gap-2
+      rounded-full
+      bg-[#10B981]
+      px-7 py-3.5
+      text-[17px] font-semibold
+      text-white
+      shadow-sm
+      transition-all duration-200 ease-out
+      hover:bg-[#059669] hover:shadow-lg
+      focus:outline-none focus:ring-2 focus:ring-[#10B981]/40
+      active:scale-[0.97]
+    "
+  >
+    <span>Plan your trip</span>
+
+    <ArrowRight
+      className="
+        h-5 w-5
+        transition-transform duration-200
+        group-hover:translate-x-1
+      "
+    />
+  </button>
+</div>
 
         {/* Mobile Menu */}
         <div className="flex items-center gap-4 md:hidden">

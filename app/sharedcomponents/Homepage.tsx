@@ -22,8 +22,8 @@ import RoadmapSection from "./sections/roadmap/RoadmapSection";
 import TrustSection from "./sections/trust/TrustSection";
 
 import Navbar from "./layout/Navbar";
-import HeroVisual from "./sections/hero/HeroVisual";
-import ChargingLogos from "./panels/ChargingLogo";
+import SectionHeader from "../Features/logo/scroll/scroll";
+
 
 export default function Homepage() {
   const scrollCarRef = useRef<HTMLDivElement>(null);
@@ -128,9 +128,9 @@ export default function Homepage() {
         </div>
       </div>
 
-      {/* Sections */}
       <Navbar />
       <HeroSection />
+      <SectionHeader title="Trusted by EV travellers across India" />
       <TrustSection />
       <ProblemSection />
       <PlanSection />

@@ -29,7 +29,7 @@ body {
 }
 
 body {
-  font-family:Inter, system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
 }
 
 @keyframes downloadHover {
@@ -37,10 +37,12 @@ body {
     transform: translateY(0);
     box-shadow: 0 8px 18px rgba(16, 185, 129, 0.15);
   }
+
   50% {
     transform: translateY(-2px);
     box-shadow: 0 12px 22px rgba(16, 185, 129, 0.25);
   }
+
   100% {
     transform: translateY(0);
     box-shadow: 0 8px 18px rgba(16, 185, 129, 0.15);
@@ -56,6 +58,7 @@ body {
     stroke-dashoffset: 0;
     filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
   }
+
   100% {
     stroke-dashoffset: -260;
     filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
@@ -75,9 +78,11 @@ body {
   0% {
     transform: translateY(0) scale(1);
   }
+
   50% {
     transform: translateY(-3px) scale(1.05);
   }
+
   100% {
     transform: translateY(0) scale(1);
   }
@@ -85,4 +90,106 @@ body {
 
 .panel-six-glow {
   animation: panelSixPop 0.45s ease-out;
+}
+
+/* 
+@keyframes borderRun {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+
+.border-run {
+  animation: borderRun 3s linear infinite;
+} */
+/* @keyframes borderComet {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -320;
+  }
+}
+
+.border-comet {
+  animation: borderComet 3s linear infinite;
+} */
+/* @keyframes cometBorder {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -380;
+  }
+}
+
+.comet-border {
+  animation: cometBorder 2.5s linear infinite;
+} */
+
+/* @keyframes smoothComet {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -470;
+  }
+}
+
+.smooth-comet {
+  animation: smoothComet 3s linear infinite;
+} */
+
+/* @keyframes cornerComet {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  20% {
+    stroke-dashoffset: -80;
+  }
+
+  40% {
+    stroke-dashoffset: -220;
+
+  }
+
+  60% {
+    stroke-dashoffset: -300;
+  }
+
+  80% {
+    stroke-dashoffset: -420;
+
+  }
+
+  100% {
+    stroke-dashoffset: -520;
+  }
+}
+
+.corner-comet {
+  animation: cornerComet 2s linear infinite;
+} */
+
+
+
+
+.border-comet {
+  animation: borderCometMove 2s linear infinite;
+}
+@keyframes borderCometMove {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -480;
+  }
+}
+
+.border-comet {
+  animation: borderCometMove 2s linear infinite;
 }

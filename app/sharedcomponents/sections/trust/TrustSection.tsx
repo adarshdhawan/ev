@@ -13,18 +13,13 @@ const stats = [
 
 export default function TrustSection() {
   return (
-    <section className="">
-      <div className="mx-auto w-281 max-w-5.4xl">
-
-        {/* Title */}
-        <h2 className="text-center text-3xl font-semibold tracking-wide text-emerald-600 text-[40px]">
-          Trusted by EV travellers across India
-        </h2>
+    <section className="px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
 
         {/* Stats Box */}
-        <div className="mx-auto max-w-[1200px] overflow-hidden rounded-[28px] bg-gradient-to-r from-[#10a85a] via-[#0b7b43] to-[#0a5a33] shadow-[0_18px_40px_rgba(16,129,80,0.3)] mt-[70px] mb-[99]">
+        <div className="mt-12 overflow-hidden rounded-[28px] bg-gradient-to-r from-[#10a85a] via-[#0b7b43] to-[#0a5a33] shadow-[0_18px_40px_rgba(16,129,80,0.3)]">
 
-          <div className="grid grid-cols-2 gap-y-4 gap-x-4 px-4 py-4 text-white sm:grid-cols-3 lg:grid-cols-6 m2-[25px]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 text-white">
 
             {stats.map((stat, index) => {
               const Icon = stat.icon;
@@ -32,22 +27,22 @@ export default function TrustSection() {
               return (
                 <div
                   key={stat.value}
-                  className={`flex flex-col items-center gap-2 px-2 text-center ${index === 0 ? "" : "lg:border-l lg:border-white/20"
-                    }`}
+                  className={`flex flex-col items-center justify-center px-4 py-6 text-center
+                  ${index !== 0 ? "lg:border-l lg:border-white/20" : ""}`}
                 >
 
                   {/* Icon */}
-                  <div className="rounded-full border border-white/25 bg-white/10 p-3">
-                    <Icon className="h-5 w-5 text-white/90" />
+                  <div className="mb-2 rounded-full border border-white/25 bg-white/10 p-3 sm:p-4">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
 
                   {/* Value */}
-                  <p className="text-xl font-semibold tracking-wide sm:text-2xl">
+                  <p className="text-lg font-semibold sm:text-xl lg:text-2xl">
                     {stat.value}
                   </p>
 
                   {/* Label */}
-                  <p className="whitespace-pre-line text-xs sm:text-sm text-white/80 leading-snug">
+                  <p className="mt-1 whitespace-pre-line text-xs leading-snug text-white/80 sm:text-sm">
                     {stat.label}
                   </p>
 
@@ -58,6 +53,7 @@ export default function TrustSection() {
           </div>
 
         </div>
+
       </div>
     </section>
   );

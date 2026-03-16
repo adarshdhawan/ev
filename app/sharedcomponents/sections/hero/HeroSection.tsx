@@ -24,14 +24,13 @@ function HeroCopy() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".hero-copy-item",
-        { opacity: 0, y: 26 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.12,
+          stagger: 0.15,
           duration: 0.9,
           ease: "power3.out",
-          delay: 0.1,
         }
       );
 
@@ -40,71 +39,29 @@ function HeroCopy() {
         let index = 0;
 
         wordRef.current.textContent = words[index];
-        gsap.set(wordRef.current, { opacity: 1, y: 0 });
 
-        const wordTimeline = gsap.timeline({
+        const tl = gsap.timeline({
           repeat: -1,
-          repeatDelay: 1.4,
+          repeatDelay: 1.3,
         });
 
-        wordTimeline
-          .to(wordRef.current, {
-            opacity: 0,
-            y: -8,
-            duration: 0.3,
-            ease: "power2.in",
-            onComplete: () => {
-              index = (index + 1) % words.length;
-              if (wordRef.current) {
-                wordRef.current.textContent = words[index];
-              }
-            },
-          })
-          .to(wordRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          });
+        tl.to(wordRef.current, {
+          opacity: 0,
+          y: -10,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            index = (index + 1) % words.length;
+            if (wordRef.current) wordRef.current.textContent = words[index];
+          },
+        }).to(wordRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        });
       }
     }, copyRef);
-
-    const button = downloadBtnRef.current;
-    const ring = downloadRingRef.current;
-
-    let ringTl: gsap.core.Timeline | null = null;
-
-    if (button && ring) {
-      ringTl = gsap.timeline({ paused: true, repeat: -1 });
-
-      ringTl
-        .set(ring, { strokeDashoffset: 220 })
-        .to(ring, {
-          strokeDashoffset: 0,
-          duration: 1.2,
-          ease: "power2.inOut",
-        })
-        .to(ring, {
-          strokeDashoffset: -220,
-          duration: 1.2,
-          ease: "power2.inOut",
-        });
-
-      const handleEnter = () => ringTl?.play();
-      const handleLeave = () => {
-        ringTl?.pause(0);
-        gsap.set(ring, { strokeDashoffset: 220 });
-      };
-
-      button.addEventListener("mouseenter", handleEnter);
-      button.addEventListener("mouseleave", handleLeave);
-
-      return () => {
-        button.removeEventListener("mouseenter", handleEnter);
-        button.removeEventListener("mouseleave", handleLeave);
-        ctx.revert();
-      };
-    }
 
     return () => ctx.revert();
   }, []);
@@ -112,22 +69,25 @@ function HeroCopy() {
   return (
     <div
       ref={copyRef}
-      className={`${inter.className} 
+      className={`${inter.className}
       mx-auto
-      mt-16
+      w-full
       max-w-xl
-      space-y-6
-      px-4
+      space-y-8
       text-center
-      sm:mt-12
-      sm:px-6
-      lg:mx-0
-      lg:mt-0
-      lg:max-w-2xl
       lg:text-left`}
     >
-      <HeroHeader ref={wordRef} />
+      {/* Header */}
+      <div className="hero-copy-item">
+        <HeroHeader ref={wordRef} />
+      </div>
 
+      {/* Hero Visual (Mobile Only) */}
+      <div className="hero-copy-item flex justify-center lg:hidden">
+        <HeroVisual />
+      </div>
+
+      {/* Buttons */}
       <div
         className="
         hero-copy-item
@@ -155,22 +115,19 @@ export default function HeroSection() {
       className="
       relative
       min-h-screen
-      px-4
-      pt-8
-      pb-12
-      sm:px-8
+      overflow-hidden
+      px-6
+      py-16
+      sm:px-10
       lg:px-16
       "
     >
       {/* Background Blur */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-
-        <div className="absolute -left-16 top-0 h-40 w-40 rounded-full bg-emerald-200/20 blur-3xl sm:h-56 sm:w-56 lg:h-64 lg:w-64" />
-
-        <div className="absolute right-0 top-0 h-48 w-48 rounded-full bg-sky-200/20 blur-[100px] sm:h-64 sm:w-64 lg:h-72 lg:w-72" />
+        <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-emerald-200/20 blur-3xl" />
+        <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-sky-200/20 blur-[120px]" />
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.06),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(14,165,233,0.06),transparent_40%)]" />
-
       </div>
 
       {/* Layout */}
@@ -178,7 +135,6 @@ export default function HeroSection() {
         className="
         mx-auto
         grid
-        w-full
         max-w-7xl
         grid-cols-1
         items-center
@@ -186,9 +142,14 @@ export default function HeroSection() {
         lg:grid-cols-2
         "
       >
+        {/* Text */}
         <HeroCopy />
-        <HeroVisual />
+
+        {/* Hero Visual Desktop */}
+        <div className="hidden lg:flex justify-center ml-10">
+          <HeroVisual />
+        </div>
       </div>
     </section>
   );
-} 
+}

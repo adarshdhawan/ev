@@ -9,7 +9,7 @@ type TopNavProps = {
 
 export default function TopNavBar({ items }: TopNavProps) {
   return (
-    <div className="hidden h-10 items-center justify-center bg-[#165233] px-6 md:flex lg:px-10">
+    <div className=" hidden h-10 items-center justify-center bg-[#165233] px-6 md:flex lg:px-10 mt">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-center gap-16">
         {items.map((item) => (
           <a

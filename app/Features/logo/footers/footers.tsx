@@ -1,42 +1,70 @@
 export default function HeroFooters() {
+  const avatars = [1, 2, 3, 4, 5];
+  const stars = [1, 2, 3, 4, 5];
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="hero-copy-item flex flex-wrap items-center gap-4">
+    <div className="flex flex-col gap-4 ml-10">
+      
+      {/* Top Row */}
+      <div className="hero-copy-item flex flex-wrap items-center gap-5">
+
         {/* Avatars */}
         <div className="flex -space-x-3">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
-                <img 
-                    src={`https://i.pravatar.cc/100?u=${i}`} 
-                    alt="User" 
-                    className="h-full w-full object-cover"
-                />
+          {avatars.map((id) => (
+            <div
+              key={id}
+              className="h-10 w-10 overflow-hidden rounded-full border-2 border-white bg-slate-200"
+            >
+              <img
+                src={`https://i.pravatar.cc/100?u=${id}`}
+                alt="EV driver"
+                className="h-full w-full object-cover"
+              />
             </div>
           ))}
         </div>
-        
-        {/* Rating */}
+
+        {/* Rating Section */}
         <div className="flex items-center gap-3">
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-xl text-[#f59e0b]">★</span>
+
+          {/* Stars */}
+          <div className="flex items-center gap-1">
+            {stars.map((star) => (
+              <span
+                key={star}
+                className="text-lg leading-none text-[#f59e0b]"
+              >
+                ★
+              </span>
             ))}
           </div>
-          <div className="h-4 w-[1px] bg-slate-300" />
-          <p className="text-base text-slate-600 font-medium whitespace-nowrap">
-            <span className="font-bold text-slate-900">4.8 / 5</span> on Google Reviews
+
+          {/* Divider */}
+          <div className="h-4 w-px bg-slate-300" />
+
+          {/* Rating Text */}
+          <p className="text-sm font-medium text-slate-700 whitespace-nowrap">
+            <span className="font-semibold text-slate-900">4.8 / 5</span>
           </p>
-          <img 
-            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
-            alt="Google" 
-            className="h-4 w-auto grayscale opacity-70"
+
+          {/* Google Logo */}
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+            alt="Google"
+            className="h-4 w-auto opacity-80"
           />
         </div>
       </div>
 
-      <p className="hero-copy-item text-base text-slate-500 font-medium">
-        Trusted by <span className="font-bold text-slate-800">4,000+ EV drivers</span> across India
+      {/* Bottom Text */}
+      <p className="hero-copy-item text-sm font-medium text-slate-500">
+        Trusted by{" "}
+        <span className="font-semibold text-slate-900">
+          4,000+ EV drivers
+        </span>{" "}
+        across India
       </p>
+
     </div>
   );
 }
