@@ -22,7 +22,7 @@ import RoadmapSection from "./sections/roadmap/RoadmapSection";
 import TrustSection from "./sections/trust/TrustSection";
 
 import Navbar from "./layout/Navbar";
-import SectionHeader from "../Features/logo/scroll/scroll";
+import SectionHeader from "../Features/logo/sectionheader/Sectionheader";
 
 
 export default function Homepage() {
@@ -128,23 +128,59 @@ export default function Homepage() {
         </div>
       </div>
 
-      <Navbar />
-      <HeroSection />
-      <SectionHeader title="Trusted by EV travellers across India" />
-      <TrustSection />
-      <ProblemSection />
-      <PlanSection />
-      <FeaturesSection />
-      <CallToActionSection />
-      <PricingSection />
-      <RoadmapSection />
-      <AppFeaturesPanel />
-      <ToolsPanel />
-      <ChargingNetworksPanel />
-      <GuidesPanel />
-      <FaqPanel />
-      <CtaPanel />
-      <FooterPanel />
+      <div className="flex w-full flex-col items-center lg:items-stretch">
+        <div className="w-full">
+          <Navbar />
+        </div>
+        <div className="w-full">
+          <HeroSection />
+        </div>
+        <div className="w-full">
+          <SectionHeader title="Trusted by EV travellers across India" />
+        </div>
+        <div className="w-full">
+          <TrustSection />
+        </div>
+        <div className="w-full">
+          <ProblemSection />
+        </div>
+        <div className="w-full">
+          <PlanSection />
+        </div>
+        <div className="w-full">
+          <FeaturesSection />
+        </div>
+        <div className="w-full">
+          <CallToActionSection />
+        </div>
+        <div className="w-full">
+          <PricingSection />
+        </div>
+        <div className="w-full">
+          <RoadmapSection />
+        </div>
+        <div className="w-full">
+          <AppFeaturesPanel />
+        </div>
+        <div className="w-full">
+          <ToolsPanel />
+        </div>
+        <div className="w-full">
+          <ChargingNetworksPanel />
+        </div>
+        <div className="w-full">
+          <GuidesPanel />
+        </div>
+        <div className="w-full">
+          <FaqPanel />
+        </div>
+        <div className="w-full">
+          <CtaPanel />
+        </div>
+        <div className="w-full">
+          <FooterPanel />
+        </div>
+      </div>
     </main>
   );
 }

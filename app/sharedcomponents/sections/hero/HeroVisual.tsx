@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import phoneImg1 from "@/app/assets/0a4f7115570656534fa11fd9c9bb3d98c9748560.png";
-import phoneImg2 from "@/app/assets/9de05fd2c4922afa310ed8802f122d91e0ff6cdb.png";
+import phoneImg2 from "@/app/assets/flipphone.png";
 
 export default function HeroVisual() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -121,7 +121,7 @@ export default function HeroVisual() {
   return (
     <div
       ref={sectionRef}
-      className="relative mx-auto w-full max-w-[620px] h-[400px] sm:h-[460px] md:h-[520px] lg:h-[600px] -translate-x-[85px]"
+      className="relative mx-auto h-[340px] w-full max-w-[620px] translate-x-0 sm:-translate-x-8 lg:-translate-x-12 -translate-y-4 sm:-translate-y-8 lg:-translate-y-12 sm:h-[460px] md:h-[520px] lg:h-[600px]"
       style={{ perspective: "1500px" }}
     >
       {/* Background Rings */}
@@ -159,19 +159,19 @@ export default function HeroVisual() {
             <CarFront className="h-3 w-3 sm:h-4 sm:w-4" />
           </span>
         </div>
-        
+
       </div>
- <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] h-full flex items-center justify-center pointer-events-auto">
-      {/* Phones */}
+      <div className="absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] h-full flex items-center justify-center pointer-events-auto">
+        {/* Phones */}
 
         {/* Phone 1 */}
         <div
           ref={phoneOneRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="absolute z-10 w-[160px] sm:w-[190px] md:w-[220px] cursor-pointer"
+          className="absolute z-10 w-[180px] sm:w-[210px] md:w-[250px] cursor-pointer"
           style={{
-            transform: "translateX(-25%) translateY(-10%) rotate(-10deg)",
+            transform: "translateX(-15%) translateY(-10%) rotate(-5deg)",
             filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))",
           }}
         >
@@ -186,9 +186,9 @@ export default function HeroVisual() {
         {/* Phone 2 */}
         <div
           ref={phoneTwoRef}
-          className="absolute z-20 w-[160px] sm:w-[190px] md:w-[220px] pointer-events-none"
+          className="absolute z-20 w-[180px] sm:w-[210px] md:w-[250px] pointer-events-none"
           style={{
-            transform: "translateX(25%) translateY(10%) rotate(10deg)",
+            transform: "translateX(25%) translateY(10%) rotate(5deg)",
             filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.2))",
           }}
         >
@@ -200,7 +200,7 @@ export default function HeroVisual() {
           />
         </div>
       </div>
-     
+
     </div>
   );
 }

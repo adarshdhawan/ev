@@ -66,6 +66,24 @@ body {
 
 body {
   font-family: Inter, system-ui, -apple-system, sans-serif;
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vh -10vw;
+  z-index: -1;
+  background:
+    radial-gradient(40rem 30rem at 15% 10%, rgba(16, 185, 129, 0.08), transparent 60%),
+    radial-gradient(36rem 28rem at 85% 0%, rgba(14, 165, 233, 0.08), transparent 60%),
+    radial-gradient(30rem 24rem at 70% 85%, rgba(16, 185, 129, 0.06), transparent 60%);
+  filter: blur(18px);
+  pointer-events: none;
 }
 
 @keyframes downloadHover {

@@ -3,10 +3,10 @@ export default function HeroFooters() {
   const stars = [1, 2, 3, 4, 5];
 
   return (
-    <div className="flex flex-col gap-4 ml-10">
-      
+    <div className="flex flex-col items-center gap-4 text-center lg:ml-10 lg:items-start lg:text-left">
+
       {/* Top Row */}
-      <div className="hero-copy-item flex flex-wrap items-center gap-5">
+      <div className="hero-copy-item flex flex-wrap items-center justify-center gap-5 lg:justify-start">
 
         {/* Avatars */}
         <div className="flex -space-x-3">

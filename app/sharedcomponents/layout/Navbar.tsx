@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import gsap from "gsap";
 import Logo from "../../Features/logo/logo/logo";
 import TopNavBar from "../../Features/logo/nav/navbar";
 import SubNav from "../../Features/logo/subnav/subnav";
@@ -45,6 +46,7 @@ const menuGroups: MenuGroup[] = [
     label: "EV Match",
     options: ["2-Wheeler", "4-Wheeler Passenger EV", "For Business"],
   },
+
 ];
 
 export default function Navbar() {
@@ -52,6 +54,8 @@ export default function Navbar() {
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [mobileMatchOpen, setMobileMatchOpen] = useState(false);
   const [subNavSticky, setSubNavSticky] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+  const [barHeight, setBarHeight] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -64,57 +68,79 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!barRef.current) return;
+    setBarHeight(barRef.current.offsetHeight);
+  }, []);
+
+  useEffect(() => {
+    if (!barRef.current) return;
+    gsap.to(barRef.current, {
+      y: subNavSticky ? 0 : 8,
+      scale: subNavSticky ? 1 : 0.99,
+      boxShadow: subNavSticky
+        ? "0 16px 40px rgba(15, 23, 42, 0.12)"
+        : "0 0 0 rgba(0,0,0,0)",
+      backgroundColor: subNavSticky ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,1)",
+      duration: 0.35,
+      ease: "power3.out",
+    });
+  }, [subNavSticky]);
+
   return (
-    <header className="relative z-40">
+    <header className="relative z-40 font-sans">
       <TopNavBar items={topNavItems} />
 
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-4">
+      <div style={{ height: subNavSticky ? barHeight : 0 }} aria-hidden />
 
+      <div
+        ref={barRef}
+        className={`mx-auto flex w-full max-w-7xl items-center justify-between gap-4 rounded-full bg-white px-6 py-3 ${
+          subNavSticky
+            ? "fixed left-1/2 top-4 z-50 -translate-x-1/2 backdrop-blur-md"
+            : "relative"
+        }`}
+      >
         {/* Logo */}
-        <div className="flex shrink-0 items-center mr-16">
+        <div className="flex shrink-0 items-center">
           <Logo />
         </div>
 
         {/* Center Navigation */}
-        
         <div className="hidden flex-1 items-center justify-center md:flex">
-          <SubNav
-            items={subNavItems}
-            menuGroups={menuGroups}
-            sticky={subNavSticky}
-          />
+          <SubNav items={subNavItems} menuGroups={menuGroups} />
         </div>
 
         {/* Right Button */}
         <div className="hidden shrink-0 items-center md:flex">
-  <button
-    type="button"
-    className="
-      group
-      inline-flex items-center gap-2
-      rounded-full
-      bg-[#10B981]
-      px-7 py-3.5
-      text-[17px] font-semibold
-      text-white
-      shadow-sm
-      transition-all duration-200 ease-out
-      hover:bg-[#059669] hover:shadow-lg
-      focus:outline-none focus:ring-2 focus:ring-[#10B981]/40
-      active:scale-[0.97]
-    "
-  >
-    <span>Plan your trip</span>
+          <button
+            type="button"
+            className="
+              group
+              inline-flex items-center gap-2
+              rounded-full
+              bg-[#10B265]
+              px-7 py-2.5
+              text-[17px] font-semibold
+              text-white
+              shadow-sm
+              transition-all duration-200 ease-out
+              hover:bg-[#059669] hover:shadow-lg
+              focus:outline-none focus:ring-2 focus:ring-[#10B981]/40
+              active:scale-[0.97]
+            "
+          >
+            <span>Plan your trip</span>
 
-    <ArrowRight
-      className="
-        h-5 w-5
-        transition-transform duration-200
-        group-hover:translate-x-1
-      "
-    />
-  </button>
-</div>
+            <ArrowRight
+              className="
+                h-5 w-5
+                transition-transform duration-200
+                group-hover:translate-x-1
+              "
+            />
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <div className="flex items-center gap-4 md:hidden">
@@ -143,7 +169,6 @@ export default function Navbar() {
       {/* Mobile Dropdown */}
       {mobileOpen && (
         <div className="mx-4 mt-3 space-y-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-md md:hidden">
-
           {[...topNavItems.slice(1), ...subNavItems].map((item) => (
             <a
               key={item.label}
@@ -162,9 +187,8 @@ export default function Navbar() {
           >
             Tools
             <ChevronDown
-              className={`h-4 w-4 transition-transform duration-300 ${
-                mobileToolsOpen ? "rotate-180" : ""
-              }`}
+              className={`h-4 w-4 transition-transform duration-300 ${mobileToolsOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -186,9 +210,8 @@ export default function Navbar() {
           >
             EV Match
             <ChevronDown
-              className={`h-4 w-4 transition-transform duration-300 ${
-                mobileMatchOpen ? "rotate-180" : ""
-              }`}
+              className={`h-4 w-4 transition-transform duration-300 ${mobileMatchOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -210,7 +233,6 @@ export default function Navbar() {
             Plan your trip
             <ArrowRight className="h-4 w-4" />
           </button>
-
         </div>
       )}
     </header>

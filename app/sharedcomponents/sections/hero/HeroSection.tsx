@@ -115,11 +115,14 @@ export default function HeroSection() {
       className="
       relative
       min-h-screen
+      lg:min-h-0
       overflow-hidden
       px-6
-      py-16
+      pt-16
+      pb-6
       sm:px-10
       lg:px-16
+      lg:pb-0
       "
     >
       {/* Background Blur */}
@@ -146,7 +149,7 @@ export default function HeroSection() {
         <HeroCopy />
 
         {/* Hero Visual Desktop */}
-        <div className="hidden lg:flex justify-center ml-10">
+        <div className="hidden lg:flex justify-center ml-15 mt-10">
           <HeroVisual />
         </div>
       </div>
